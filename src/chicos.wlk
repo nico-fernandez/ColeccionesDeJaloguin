@@ -2,6 +2,10 @@ object legionDelTerror {
 	var chicos = []
 	var lider
 	
+	method chicos() {
+		return chicos
+	}
+	
 	method lider() {
 		return chicos.max({unChico => unChico.capacidadDeAsustar()})
 	}
@@ -10,7 +14,7 @@ object legionDelTerror {
 		chicos.add(masChicos)
 	}
 	
-	method capacidadDeAsustar() {
+	method capacidadDeSusto() {
 		return chicos.sum({unChico => unChico.capacidadDeAsustar()})
 	}
 	
@@ -22,8 +26,11 @@ object legionDelTerror {
 object macaria{
 	var nivelDeIra = 10
 	var caramelos = 0
-	var disfraces = []
+	const disfraces = []
 		
+	method disfraces() {
+		return disfraces
+	}
 	
 	method loHacenEnojar() {
 		nivelDeIra += 1
@@ -41,6 +48,14 @@ object macaria{
 		disfraces.remove(unDisfraz)
 	}
 	
+	method disfrazQueAsustaMenos() {
+		return disfraces.min({unDisfraz => unDisfraz.capacidadDeSusto()})
+	}
+	
+	method dejarDeUsarDisfrazMenosEfectivo() {
+		self.quitarDisfraz(self.disfrazQueAsustaMenos())
+	}
+	
 	method recibirCaramelos(cantidad) {
 		caramelos += (cantidad - cantidad * 0.25)
 	}
@@ -48,7 +63,7 @@ object macaria{
 
 object pancracio {
 	var grito = "buuuuuu"
-	var disfraz = mascaraDeDracula
+	var disfraz
 	var caramelos = 0
 	
 	method loHacenEnojar() {
@@ -65,6 +80,31 @@ object pancracio {
 	
 	method recibirCaramelos(cantidad) {
 		caramelos += cantidad
+	}
+}
+
+// Agrego a fulanito que su capacidad de asustar se basa en el promedio de la capacidad de asustar del grupo
+// menos su nivel de irritabilidad, el cual aumenta cuando lo hacen enojar. El siempre se come la mitad de 
+// sus caramelos. Y tiene un solo disfraz
+object fulanito {
+	var nivelDeIrritabilidad = 23
+	var disfraz
+	var caramelos = 0
+	
+	method loHacenEnojar() {
+		nivelDeIrritabilidad += 1
+	}
+	
+	method cambiarDisfraz(nuevoDisfraz) {
+		disfraz = nuevoDisfraz	
+	} 
+	
+	method capacidadDeSusto() {
+		return legionDelTerror.capacidadDeSusto() / legionDelTerror.chicos().size() - nivelDeIrritabilidad
+	}
+	
+	method recibirCaramelos(cantidad) {
+		caramelos += cantidad / 2
 	}
 }
 

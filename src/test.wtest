@@ -1,0 +1,30 @@
+import chicos.*
+
+describe "Test de Colecciones de Jaloguin" {
+	
+	
+	test "Macaria se pone el traje de bruja y la mascara de Dracula"{
+		macaria.usarDisfraz(trajeDeBruja)
+		macaria.usarDisfraz(mascaraDeDracula)
+		assert.equals([trajeDeBruja, mascaraDeDracula], macaria.disfraces())
+	}
+	
+	test "Macaria se pone todos los disfraces, pero se deshace del que asusta menos" {
+		macaria.usarDisfraz(trajeDeBruja)
+		macaria.usarDisfraz(mascaraDeFrankenstein)
+		macaria.usarDisfraz(mascaraDeDracula)
+		macaria.usarDisfraz(mascaraDePolitico)
+		macaria.usarDisfraz(barba)
+		macaria.dejarDeUsarDisfrazMenosEfectivo()
+		assert.that(macaria.disfraces() == [trajeDeBruja, mascaraDeFrankenstein, mascaraDeDracula, barba])
+	}
+	
+	test "El disfraz que asusta menos es la mascara de politico" {
+		macaria.usarDisfraz(trajeDeBruja)
+		macaria.usarDisfraz(mascaraDeFrankenstein)
+		macaria.usarDisfraz(mascaraDeDracula)
+		macaria.usarDisfraz(mascaraDePolitico)
+		macaria.usarDisfraz(barba)
+		assert.that(macaria.disfrazQueAsustaMenos() == mascaraDePolitico)
+	}
+}

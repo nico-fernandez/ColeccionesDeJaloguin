@@ -6,8 +6,6 @@
 
 **Se cuenta con información de Jalogüin, un juego donde los chicos intentarán obtener caramelos mediante sustos.**
 
-![Mascaras](http://mla-s2-p.mlstatic.com/199011-MLA20469290685_102015-Y.jpg)
-
 Para obtener caramelos, los chicos del barrio intentarán asustar al insensible Sr. Mirca, como se describe a continuación.
  
 La capacidad de asustar de cada pibe depende de cómo es y lo que lleva puesto.
