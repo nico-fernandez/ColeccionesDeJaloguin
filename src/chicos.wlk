@@ -7,15 +7,15 @@ object legionDelTerror {
 	}
 	
 	method lider() {
-		return chicos.max({unChico => unChico.capacidadDeAsustar()})
+		return chicos.max({unChico => unChico.capacidadDeSusto()})
 	}
 	
 	method agregarA(masChicos) {
 		chicos.add(masChicos)
 	}
 	
-	method capacidadDeSusto() {
-		return chicos.sum({unChico => unChico.capacidadDeAsustar()})
+	method capacidadDeAsustar() {
+		return chicos.sum({unChico => unChico.capacidadDeSusto()})
 	}
 	
 	method asustar(adulto) {
@@ -26,7 +26,7 @@ object legionDelTerror {
 object macaria{
 	var nivelDeIra = 10
 	var caramelos = 0
-	const disfraces = []
+	var disfraces = []
 		
 	method disfraces() {
 		return disfraces
@@ -63,7 +63,7 @@ object macaria{
 
 object pancracio {
 	var grito = "buuuuuu"
-	var disfraz
+	var disfraz = mascaraDeDracula
 	var caramelos = 0
 	
 	method loHacenEnojar() {
@@ -88,7 +88,7 @@ object pancracio {
 // sus caramelos. Y tiene un solo disfraz
 object fulanito {
 	var nivelDeIrritabilidad = 23
-	var disfraz
+	var disfraz = barba
 	var caramelos = 0
 	
 	method loHacenEnojar() {
@@ -100,7 +100,7 @@ object fulanito {
 	} 
 	
 	method capacidadDeSusto() {
-		return legionDelTerror.capacidadDeSusto() / legionDelTerror.chicos().size() - nivelDeIrritabilidad
+		return 100 - nivelDeIrritabilidad
 	}
 	
 	method recibirCaramelos(cantidad) {
